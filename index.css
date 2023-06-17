@@ -1,10 +1,20 @@
-.row {
+.container {
+    width: 300px;
+    height: 300px;
+    border: 1px solid blue;
     display: flex;
+    flex-direction: column;
     align-items: stretch;
 }
 
-button {
+.row {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.square {
     border: 1px solid black;
-    width: 30px;
-    height: 30px;
+    align-items: stretch;
+    flex: 1;
 }
