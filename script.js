@@ -17,9 +17,14 @@ function initializeGrid(size) {
     for (let i = 0; i < size; i++) {
       const square = document.createElement("div");
       square.className = "square";
+      square.addEventListener('mouseleave', function() {
+        square.style.backgroundColor = "black";
+      });
       row.appendChild(square);
     }
   }
+
+  //and add event listeners
 }
 
 function resetContainer() {
@@ -27,6 +32,10 @@ function resetContainer() {
         container.removeChild(container.firstChild);
     }
 }
+
+console.log()
+
+
 
 input.oninput = function () {
   output.innerHTML = this.value;
