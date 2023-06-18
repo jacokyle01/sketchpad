@@ -1,3 +1,23 @@
+.color-palette {
+    width: 400px;
+    height: 75px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.color {
+    border: 1px solid black;
+    flex: 1;
+}
+
+.color#orange {
+    background-color: "orange";
+}
+
+
+
+
 .container {
     width: 300px;
     height: 300px;
