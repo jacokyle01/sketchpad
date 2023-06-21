@@ -26,26 +26,20 @@ function initializePalette() {
 
 //called when slider is updated
 function initializeGrid(size) {
-  for (let row = 0; row < size; row++) {
-    const row = document.createElement("div");
-    row.className = "row";
-    //row.setAttribute('draggable', 'false');
-    container.appendChild(row);
-    for (let i = 0; i < size; i++) {
-      const square = document.createElement("div");
-      square.classList.add("square");
+  for (let i = 0; i < size * size; ++i) {
+    const square = document.createElement("div");
+    square.classList.add("square");
+    square.addEventListener("mousemove", changeColor);
+    square.addEventListener("mousedown", changeColor);
 
-      square.addEventListener('mouseover', changeColor);
-      square.addEventListener('mousedown', changeColor);
+    square.style.width = 100 / size + "%";
+    square.style.height = 100 / size + "%";
 
-      
-      row.appendChild(square);
-    }
+    container.appendChild(square);
   }
 }
 
 function changeColor(e) {
-  //if (e.type === 'mouseover' && !mouseDown) return
   if (e.buttons === 1) {
     e.target.style.backgroundColor = selectedColor.id;
   }
@@ -66,7 +60,6 @@ function resetContainer() {
   }
 }
 
-console.log();
 
 input.oninput = function () {
   output.innerHTML = this.value;
