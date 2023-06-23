@@ -28,6 +28,19 @@
     border: 1px solid black;
 }
 
+.mode-selector {
+    width: 300px;
+    border: 1px solid black;
+    height: 100px;
+    display: flex;
+    font-size: 1.75rem;
+}
+
+.mode {
+    border: 1px solid black;
+    flex: 1;
+}
+
 
 .container {
     width: 450px;

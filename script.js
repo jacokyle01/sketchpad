@@ -18,6 +18,7 @@ window.onload = function () {
 
   initializePalette();
   initializeBrushSizes();
+  initializeModes();
   mode = DEFAULT_MODE;
   activateDefaultSettings();
 };
@@ -28,6 +29,9 @@ function activateDefaultSettings() {
 
   const defaultColor = document.querySelector(`#${DEFAULT_COLOR}`);
   defaultColor.dispatchEvent(new MouseEvent("click"));
+
+  const defaultMode = document.querySelector(`#${DEFAULT_MODE}`);
+  defaultMode.dispatchEvent(new MouseEvent("click"));
 }
 
 //called once on load
@@ -36,8 +40,8 @@ function initializePalette() {
   colors.forEach((color) => {
     color.style.backgroundColor = color.id;
     color.addEventListener("click", function () {
-     // updatePalette(color);
-      colors.forEach(color => color.style.border = "1px solid black");
+      // updatePalette(color);
+      colors.forEach((color) => (color.style.border = "1px solid black"));
       color.style.border = "3px solid red";
       selectedColor = color;
     });
@@ -49,8 +53,19 @@ function initializeBrushSizes() {
   sizes.forEach((size, index) => {
     size.addEventListener("click", function () {
       brushSize = index;
-      sizes.forEach(size => size.style.border = "1px solid black");
+      sizes.forEach((size) => (size.style.border = "1px solid black"));
       size.style.border = "3px solid red";
+    });
+  });
+}
+
+function initializeModes() {
+  const modes = document.querySelectorAll(".mode");
+  modes.forEach((modeBox) => {
+    modeBox.addEventListener("click", function () {
+      mode = modeBox.id;
+      modes.forEach((modeBox) => (modeBox.style.border = "1px solid black"));
+      modeBox.style.border = "3px solid red";
     });
   });
 }
@@ -60,7 +75,7 @@ function initializeGrid(size) {
   for (let i = 0; i < size * size; ++i) {
     const square = document.createElement("div");
     square.classList.add("square");
-    square.addEventListener("mousemove", paint);
+    square.addEventListener("mouseenter", paint);
     square.addEventListener("mousedown", paint);
 
     square.setAttribute("data-row", Math.floor(i / size));
@@ -113,7 +128,17 @@ function changeColor(square) {
     case "color":
       square.style.backgroundColor = selectedColor.id;
       break;
+
+    case "rainbow":
+      square.style.backgroundColor = randomColor();
   }
+}
+
+function randomColor() {
+  let red = Math.floor(Math.random() * 255);
+  let green = Math.floor(Math.random() * 255);
+  let blue = Math.floor(Math.random() * 255);
+  return `rgb(${red}, ${blue}, ${green})`;
 }
 
 function resetContainer() {
