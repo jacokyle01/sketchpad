@@ -2,12 +2,6 @@
     user-select: none;
 }
 
-.colors {
-    display: flex;
-    align-items: center;
-    margin: 10px;
-}
-
 .color-palette {
     width: 400px;
     height: 75px;

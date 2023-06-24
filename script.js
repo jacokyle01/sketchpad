@@ -1,11 +1,12 @@
 const NUM_BUTTONS = 10;
 const DEFAULT_BRUSH_SIZE = "small";
 const DEFAULT_MODE = "color";
-const DEFAULT_COLOR = "black";
+const DEFAULT_COLOR = "#000000";
 
 const container = document.querySelector(".container");
 const output = document.querySelector(".output");
 const input = document.getElementById("slider");
+const colorPicker = document.getElementById("color-picker");
 const drawingState = document.getElementById("drawing-state");
 
 const RGBvalues = {
@@ -38,8 +39,10 @@ function activateDefaultSettings() {
   const defaultBrushSize = document.querySelector(`#${DEFAULT_BRUSH_SIZE}`);
   defaultBrushSize.dispatchEvent(new MouseEvent("click"));
 
-  const defaultColor = document.querySelector(`#${DEFAULT_COLOR}`);
-  defaultColor.dispatchEvent(new MouseEvent("click"));
+  // const defaultColor = document.querySelector(`#${DEFAULT_COLOR}`);
+  // defaultColor.dispatchEvent(new MouseEvent("click"));
+  selectedColor = DEFAULT_COLOR;
+  colorPicker.value = DEFAULT_COLOR;
 
   const defaultMode = document.querySelector(`#${DEFAULT_MODE}`);
   defaultMode.dispatchEvent(new MouseEvent("click"));
@@ -55,12 +58,14 @@ function updateDrawingState() {
 function initializePalette() {
   const colors = document.querySelectorAll(".color");
   colors.forEach((color) => {
-    color.style.backgroundColor = RGBvalues[color.id];
+    color.style.backgroundColor = color.id;
     color.addEventListener("click", function () {
       // updatePalette(color);
-      colors.forEach((color) => (color.style.border = "1px solid black"));
-      color.style.border = "3px solid red";
-      selectedColor = RGBvalues[color.id];
+      // colors.forEach((color) => (color.style.border = "1px solid black"));
+      // color.style.border = "3px solid red";
+      console.log(color.id);
+      colorPicker.value = color.id;
+      selectedColor = colorPicker.value;
     });
   });
 
@@ -178,6 +183,15 @@ function adjustShade(color) {
   }
 
   return getRGBString(colorAsArray);
+}
+
+function hexToRgb(hex) {
+  var bigint = parseInt(hex, 16);
+  var r = (bigint >> 16) & 255;
+  var g = (bigint >> 8) & 255;
+  var b = bigint & 255;
+
+  return "rgb(" + r + "," + g + "," + b + ")";
 }
 
 function randomColor() {
