@@ -29,7 +29,6 @@ window.onload = function () {
   initializePalette();
   initializeBrushSizes();
   initializeModes();
-  mode = DEFAULT_MODE;
   activateDefaultSettings();
 };
 
@@ -48,12 +47,12 @@ function activateDefaultSettings() {
 function initializePalette() {
   const colors = document.querySelectorAll(".color");
   colors.forEach((color) => {
-    color.style.backgroundColor = color.id;
+    color.style.backgroundColor = RGBvalues[color.id];
     color.addEventListener("click", function () {
       // updatePalette(color);
       colors.forEach((color) => (color.style.border = "1px solid black"));
       color.style.border = "3px solid red";
-      selectedColor = RGBvalues[color.id]; 
+      selectedColor = RGBvalues[color.id];
     });
   });
 }
@@ -135,29 +134,38 @@ function paint(e) {
 function changeColor(square) {
   switch (mode) {
     case "color":
-      console.log('selected color '+ selectedColor);
+      console.log("selected color " + selectedColor);
       square.style.backgroundColor = selectedColor;
       break;
 
     case "rainbow":
       square.style.backgroundColor = randomColor();
+      break;
 
-    case "darken":
-      square.style.backgroundColor = darkenColor(square.style.backgroundColor);
+    default:
+      square.style.backgroundColor = adjustShade(square.style.backgroundColor);
+      break;
   }
 }
 
-function darkenColor(color) {
+function adjustShade(color) {
   let getColorArray = (s) => s.slice(4, -1).split(", ");
   let getRGBString = (s) => "rgb(" + s.join(", ") + ")";
-  //"rgb(255, 255, 255)"
 
-  const colorAsArray = getColorArray(color).map(color => {
-    return Math.max(0, color - 25.5);
-  })
+  let colorAsArray;
+
+  if (mode === "darken") {
+    colorAsArray = getColorArray(color).map((color) => {
+      return Math.max(0, +color - 25.5);
+    });
+  
+  } else if (mode === "lighten") {
+    colorAsArray = getColorArray(color).map((color) => {
+      return Math.min(255, +color + 25.5);
+    });
+  }
 
   return getRGBString(colorAsArray);
-
 }
 
 function randomColor() {
