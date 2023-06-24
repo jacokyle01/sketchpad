@@ -6,6 +6,7 @@ const DEFAULT_COLOR = "black";
 const container = document.querySelector(".container");
 const output = document.querySelector(".output");
 const input = document.querySelector("input");
+const drawingState = document.getElementById("drawing-state");
 
 const RGBvalues = {
   black: "rgb(0, 0, 0)",
@@ -30,6 +31,7 @@ window.onload = function () {
   initializeBrushSizes();
   initializeModes();
   activateDefaultSettings();
+  updateDrawingState();
 };
 
 function activateDefaultSettings() {
@@ -41,6 +43,12 @@ function activateDefaultSettings() {
 
   const defaultMode = document.querySelector(`#${DEFAULT_MODE}`);
   defaultMode.dispatchEvent(new MouseEvent("click"));
+}
+
+function updateDrawingState() {
+  let message =  `In ${mode} mode with brush size ${brushSize}`;
+  drawingState.innerHTML = message;
+
 }
 
 //called once on load
@@ -62,6 +70,7 @@ function initializeBrushSizes() {
   sizes.forEach((size, index) => {
     size.addEventListener("click", function () {
       brushSize = index;
+      updateDrawingState();
       sizes.forEach((size) => (size.style.border = "1px solid black"));
       size.style.border = "3px solid red";
     });
@@ -73,6 +82,7 @@ function initializeModes() {
   modes.forEach((modeBox) => {
     modeBox.addEventListener("click", function () {
       mode = modeBox.id;
+      updateDrawingState()
       modes.forEach((modeBox) => (modeBox.style.border = "1px solid black"));
       modeBox.style.border = "3px solid red";
     });
@@ -158,7 +168,6 @@ function adjustShade(color) {
     colorAsArray = getColorArray(color).map((color) => {
       return Math.max(0, +color - 25.5);
     });
-  
   } else if (mode === "lighten") {
     colorAsArray = getColorArray(color).map((color) => {
       return Math.min(255, +color + 25.5);
