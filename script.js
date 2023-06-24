@@ -82,6 +82,7 @@ function initializeGrid(size) {
     square.setAttribute("data-col", i % size);
     square.style.width = 100 / size + "%";
     square.style.height = 100 / size + "%";
+    square.style.backgroundColor = "rgb(255,255,255)";
 
     container.appendChild(square);
   }
@@ -131,7 +132,23 @@ function changeColor(square) {
 
     case "rainbow":
       square.style.backgroundColor = randomColor();
+
+    case "darken":
+      square.style.backgroundColor = darkenColor(square.style.backgroundColor);
   }
+}
+
+function darkenColor(color) {
+  let getColorArray = (s) => s.slice(4, -1).split(", ");
+  let getRGBString = (s) => "rgb(" + s.join(", ") + ")";
+  //"rgb(255, 255, 255)"
+
+  const colorAsArray = getColorArray(color).map(color => {
+    return Math.max(0, color - 25.5);
+  })
+
+  return getRGBString(colorAsArray);
+
 }
 
 function randomColor() {
