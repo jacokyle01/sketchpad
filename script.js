@@ -5,7 +5,7 @@ const DEFAULT_COLOR = "black";
 
 const container = document.querySelector(".container");
 const output = document.querySelector(".output");
-const input = document.querySelector("input");
+const input = document.getElementById("slider");
 const drawingState = document.getElementById("drawing-state");
 
 const RGBvalues = {
@@ -63,6 +63,9 @@ function initializePalette() {
       selectedColor = RGBvalues[color.id];
     });
   });
+
+  const colorPicker = document.querySelector("#color-picker");
+  colorPicker.oninput = (e) => (selectedColor = e.target.value);
 }
 
 function initializeBrushSizes() {
