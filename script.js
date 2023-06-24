@@ -7,6 +7,16 @@ const container = document.querySelector(".container");
 const output = document.querySelector(".output");
 const input = document.querySelector("input");
 
+const RGBvalues = {
+  black: "rgb(0, 0, 0)",
+  red: "rgb(255, 0, 0)",
+  orange: "rgb(255, 165, 0)",
+  yellow: "rgb(255, 255, 0)",
+  green: "rgb(0, 255, 0)",
+  blue: "rgb(0, 0, 255)",
+  white: "rgb(255, 255, 255",
+};
+
 //initialized at runtime based on defaults
 let selectedColor = null;
 let brushSize = null;
@@ -43,7 +53,7 @@ function initializePalette() {
       // updatePalette(color);
       colors.forEach((color) => (color.style.border = "1px solid black"));
       color.style.border = "3px solid red";
-      selectedColor = color;
+      selectedColor = RGBvalues[color.id]; 
     });
   });
 }
@@ -91,7 +101,6 @@ function initializeGrid(size) {
 function querySquaresInRange(sourceSquare, range) {
   const sourceRow = +sourceSquare.getAttribute("data-row");
   const sourceCol = +sourceSquare.getAttribute("data-col");
-  console.log("source " + "(" + sourceRow + ", " + sourceCol + ")");
   let squaresInRange = [];
 
   for (
@@ -104,7 +113,6 @@ function querySquaresInRange(sourceSquare, range) {
       targetCol <= sourceCol + range;
       targetCol++
     ) {
-      console.log("searching " + "(" + targetRow + " , " + targetCol + ")");
       const selector = `[data-row="${targetRow}"][data-col="${targetCol}"]`;
       const targetSquare = document.querySelector(selector);
       if (targetSquare != null) {
@@ -127,7 +135,8 @@ function paint(e) {
 function changeColor(square) {
   switch (mode) {
     case "color":
-      square.style.backgroundColor = selectedColor.id;
+      console.log('selected color '+ selectedColor);
+      square.style.backgroundColor = selectedColor;
       break;
 
     case "rainbow":
