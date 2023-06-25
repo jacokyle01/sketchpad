@@ -2,6 +2,26 @@
     user-select: none;
 }
 
+main {
+    display: flex;
+    flex-direction: row;
+}
+
+.selectors {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-manipulation {
+    display: flex;
+    flex-direction: column;
+}
+
+.color-adder {
+    display: flex;
+    flex-direction: row;
+}
+
 .color-palette {
     background-color: #f39455;
     width: 400px;
@@ -26,12 +46,16 @@
     width: 100px;
 }
 
-.brush-selector {
-    width: 500px;
-    height: 100px;
+.selector {
     display: flex;
+    flex-direction: column;
     border: 1px solid black;
     font-size: 2.5rem;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
 }
 
 .brush-size {
@@ -61,6 +85,16 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: stretch;
+}
+
+.canvas {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-manager {
+    display: flex;
+    flex-direction: row;
 }
 
 .square {

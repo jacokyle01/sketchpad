@@ -8,36 +8,57 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="color-picker">
-      <input type="color" name="color picker" id="color-picker">
-    </div>
-    <input type="button" value="Add to palette" id="add">
-    <div class="color-palette">
-        <div class="color" id="#ff0000"></div>
-        <div class="color" id="#FFA500"></div>
-        <div class="color" id="#FFFF00"></div>
-        <div class="color" id="#00FF00"></div>
-        <div class="color" id="#0000FF"></div>
-        <div class="color" id="#000000"></div>
-        <div class="color" id="#FFFFFF"></div>
-    </div>
-    <div class="brush-selector">
-      <div class="brush-size" id="small">small</div>
-      <div class="brush-size" id="1">medium</div>
-      <div class="brush-size" id="2">large</div>
-    </div>
-    <div class="mode-selector">
-      <div class="mode" id="color">color</div>
-      <div class="mode" id="rainbow">rainbow</div>
-      <div class="mode" id="darken">darken</div>
-      <div class="mode" id="lighten">lighten</div>
-    </div>
-    <input type="range" min="1" max="50" value="10" id="slider"/>
-    <h3 class="output"></h3>
-    <div class="drawing-state">
-      <h4, id="drawing-state">"hi"</h4>
-    </div>
-    <div class="container"></div>
+    <header>
+      <h1>Sketchpad</h1>
+    </header>
+    <main>
+      <div class="selectors">
+        <div class="brush selector">
+          <h5>Select Brush Size</h5>
+          <div class="brush options">
+            <div class="brush-size" id="small">small</div>
+            <div class="brush-size" id="1">medium</div>
+            <div class="brush-size" id="2">large</div>
+          </div>
+        </div>
+        <div class="selector">
+          <h5>Change Mode</h5>
+          <div class="options">
+            <div class="mode" id="color">color</div>
+            <div class="mode" id="rainbow">rainbow</div>
+            <div class="mode" id="darken">darken</div>
+            <div class="mode" id="lighten">lighten</div>
+          </div>
+        </div>
+      </div>
+      <div class="canvas">
+        <div class="grid-manager">
+          <input type="range" min="1" max="50" value="10" id="slider"/>
+          <h3 class="output"></h3>
+        </div>
+        <div class="container"></div>
+        <div class="drawing-state">
+          <h4, id="drawing-state">"hi"</h4>
+        </div>
+      </div>
+      <div class="color-manipulation">
+        <div class="color-adder">
+          <div class="color-picker">
+            <input type="color" name="color picker" id="color-picker">
+          </div>
+          <input type="button" value="Add to palette" id="add">
+        </div>
+        <div class="color-palette">
+            <div class="color" id="#ff0000"></div>
+            <div class="color" id="#FFA500"></div>
+            <div class="color" id="#FFFF00"></div>
+            <div class="color" id="#00FF00"></div>
+            <div class="color" id="#0000FF"></div>
+            <div class="color" id="#000000"></div>
+            <div class="color" id="#FFFFFF"></div>
+        </div>
+      </div>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
