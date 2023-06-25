@@ -5,7 +5,9 @@ const DEFAULT_COLOR = "#000000";
 
 const container = document.querySelector(".container");
 const output = document.querySelector(".output");
+const palette = document.querySelector(".color-palette");
 const input = document.getElementById("slider");
+const add = document.getElementById("add");
 const colorPicker = document.getElementById("color-picker");
 const drawingState = document.getElementById("drawing-state");
 
@@ -31,6 +33,7 @@ window.onload = function () {
   initializePalette();
   initializeBrushSizes();
   initializeModes();
+  initializeAdd();
   activateDefaultSettings();
   updateDrawingState();
 };
@@ -49,9 +52,26 @@ function activateDefaultSettings() {
 }
 
 function updateDrawingState() {
-  let message =  `In ${mode} mode with brush size ${brushSize}`;
+  let message = `In ${mode} mode with brush size ${brushSize}`;
   drawingState.innerHTML = message;
+}
 
+function initializeAdd() {
+  add.addEventListener("click", function () {
+    const value = colorPicker.value;
+    const addedColor = document.createElement("div");
+    addedColor.classList.add("color");
+    addedColor.id = value;
+    addedColor.style.backgroundColor = value;
+    addedColor.addEventListener("click", function () {
+      console.log("id " + addedColor.id)
+      colorPicker.value = addedColor.id;
+      selectedColor = colorPicker.value;
+    });
+
+    palette.appendChild(addedColor);
+
+  });
 }
 
 //called once on load
@@ -63,7 +83,6 @@ function initializePalette() {
       // updatePalette(color);
       // colors.forEach((color) => (color.style.border = "1px solid black"));
       // color.style.border = "3px solid red";
-      console.log(color.id);
       colorPicker.value = color.id;
       selectedColor = colorPicker.value;
     });
@@ -90,7 +109,7 @@ function initializeModes() {
   modes.forEach((modeBox) => {
     modeBox.addEventListener("click", function () {
       mode = modeBox.id;
-      updateDrawingState()
+      updateDrawingState();
       modes.forEach((modeBox) => (modeBox.style.border = "1px solid black"));
       modeBox.style.border = "3px solid red";
     });
