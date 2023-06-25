@@ -11,10 +11,19 @@
     <header>
       <h1>Sketchpad</h1>
     </header>
+    <div class="info">
+      <div class="grid-manager">
+        <input type="range" min="1" max="50" value="10" id="slider"/>
+        <h3 class="output"></h3>
+      </div>
+      <div class="drawing-state">
+        <h4 id="drawing-state">"hi"</h4>
+      </div>
+    </div>
     <main>
       <div class="selectors">
         <div class="brush selector">
-          <h5>Select Brush Size</h5>
+          <h5>Brush</h5>
           <div class="brush options">
             <div class="brush-size" id="small">small</div>
             <div class="brush-size" id="1">medium</div>
@@ -22,7 +31,7 @@
           </div>
         </div>
         <div class="selector">
-          <h5>Change Mode</h5>
+          <h5>Mode</h5>
           <div class="options">
             <div class="mode" id="color">color</div>
             <div class="mode" id="rainbow">rainbow</div>
@@ -32,14 +41,7 @@
         </div>
       </div>
       <div class="canvas">
-        <div class="grid-manager">
-          <input type="range" min="1" max="50" value="10" id="slider"/>
-          <h3 class="output"></h3>
-        </div>
         <div class="container"></div>
-        <div class="drawing-state">
-          <h4, id="drawing-state">"hi"</h4>
-        </div>
       </div>
       <div class="color-manipulation">
         <div class="color-adder">

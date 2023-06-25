@@ -11,16 +11,6 @@ const add = document.getElementById("add");
 const colorPicker = document.getElementById("color-picker");
 const drawingState = document.getElementById("drawing-state");
 
-const RGBvalues = {
-  black: "rgb(0, 0, 0)",
-  red: "rgb(255, 0, 0)",
-  orange: "rgb(255, 165, 0)",
-  yellow: "rgb(255, 255, 0)",
-  green: "rgb(0, 255, 0)",
-  blue: "rgb(0, 0, 255)",
-  white: "rgb(255, 255, 255",
-};
-
 //initialized at runtime based on defaults
 let selectedColor = null;
 let brushSize = null;
@@ -101,7 +91,7 @@ function initializeBrushSizes() {
     size.addEventListener("click", function () {
       brushSize = index;
       updateDrawingState();
-      sizes.forEach((size) => (size.style.border = "1px solid black"));
+      sizes.forEach((size) => (size.style.border = "none"));
       size.style.border = "3px solid red";
     });
   });
@@ -113,7 +103,7 @@ function initializeModes() {
     modeBox.addEventListener("click", function () {
       mode = modeBox.id;
       updateDrawingState();
-      modes.forEach((modeBox) => (modeBox.style.border = "1px solid black"));
+      modes.forEach((modeBox) => (modeBox.style.border = "none"));
       modeBox.style.border = "3px solid red";
     });
   });
