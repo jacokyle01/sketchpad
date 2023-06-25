@@ -3,16 +3,22 @@
 }
 
 .color-palette {
+    background-color: #f39455;
     width: 400px;
-    height: 75px;
-    border: 1px solid black;
+    height: 200px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px;
+    padding: 10px;
 }
 
 .color {
     border: 1px solid black;
-    flex: 1;
+    width: 60px;
+    height: 40px;
 }
 
 #color-picker {

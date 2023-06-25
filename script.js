@@ -25,6 +25,7 @@ const RGBvalues = {
 let selectedColor = null;
 let brushSize = null;
 let mode = null;
+let colorCount = 7;
 
 window.onload = function () {
   initializeGrid(NUM_BUTTONS);
@@ -58,6 +59,8 @@ function updateDrawingState() {
 
 function initializeAdd() {
   add.addEventListener("click", function () {
+    if (colorCount >= 15) return;
+
     const value = colorPicker.value;
     const addedColor = document.createElement("div");
     addedColor.classList.add("color");
@@ -70,7 +73,7 @@ function initializeAdd() {
     });
 
     palette.appendChild(addedColor);
-
+    colorCount++;
   });
 }
 
